@@ -25,5 +25,68 @@
 		<!--* Site Title -->
 		<title>GitHub Issues Tracker | Login</title>
 	</head>
-	<body></body>
+	<body>
+		<main class="bgColor">
+			<section class="min-h-screen flex justify-center items-center">
+				<div class="text-center bg-white shadow-sm rounded space-y-5 p-5">
+					<!-- Logo & name -->
+					<div>
+						<div class="flex justify-center mb-10">
+							<img src="./assets/github-logo.png" alt="" />
+						</div>
+						<h2 class="text-2xl font-semibold highColor">
+							GitHub Issues Tracker
+						</h2>
+						<p class="normalColor">Sign in to manage your issues</p>
+					</div>
+
+					<!-- Login Form -->
+					<div>
+						<fieldset class="fieldset border-none w-xs">
+							<label class="label highColor text-base">Username</label>
+							<input
+								type="text"
+								class="input"
+								placeholder="Enter Username"
+							/>
+
+							<label class="text-left text-[#4A00FF]"
+								>Default: admin</label
+							>
+
+							<label class="label highColor text-base mt-3"
+								>Password</label
+							>
+							<input
+								type="password"
+								class="input"
+								placeholder="Enter Password"
+							/>
+							<label class="text-left text-[#4A00FF]"
+								>Default: admin123</label
+							>
+
+							<button class="btn btn-primary mt-4">Sign In</button>
+						</fieldset>
+					</div>
+
+					<!-- Devider -->
+					<div class="divider">OR</div>
+
+					<!-- Demo Credentials -->
+					<div>
+						<p class="normalColor text-xs">Demo Credentials:</p>
+						<div class="bgColor rounded p-5 mt-1">
+							<h4 class="font-bold">
+								Username: <span class="font-normal">admin</span>
+							</h4>
+							<h4 class="font-bold">
+								Password: <span class="font-normal">admin123</span>
+							</h4>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
