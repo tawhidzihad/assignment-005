@@ -1,11 +1,13 @@
 document.getElementById("loginButton").addEventListener("click", () => {
 	// get the admin name
 	const inputName = document.getElementById("input_admin_name");
-	const userName = inputName.value;
+	const inputNameLowerCase = inputName.value;
+	const userName = inputNameLowerCase.toLowerCase();
 
 	// get the admin password
 	const inputPassword = document.getElementById("input_admin_Pass");
-	const userPassword = inputPassword.value;
+	const userPasswordLowerCase = inputPassword.value;
+	const userPassword = userPasswordLowerCase.toLowerCase();
 
 	// if input is empty then function will be end
 	if (userName.length > 0 && !userPassword.length > 0) {
