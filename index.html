@@ -26,7 +26,7 @@
 		<title>GitHub Issues Tracker | Login</title>
 	</head>
 	<body>
-		<main class="bgColor">
+		<main id="mainTag" class="bgColor">
 			<section class="min-h-screen flex justify-center items-center">
 				<div class="text-center bg-white shadow-sm rounded space-y-5 p-5">
 					<!-- Logo & name -->
@@ -45,6 +45,7 @@
 						<fieldset class="fieldset border-none w-xs">
 							<label class="label highColor text-base">Username</label>
 							<input
+								id="input_admin_name"
 								type="text"
 								class="input"
 								placeholder="Enter Username"
@@ -58,6 +59,7 @@
 								>Password</label
 							>
 							<input
+								id="input_admin_Pass"
 								type="password"
 								class="input"
 								placeholder="Enter Password"
@@ -66,7 +68,9 @@
 								>Default: admin123</label
 							>
 
-							<button class="btn btn-primary mt-4">Sign In</button>
+							<button id="loginButton" class="btn btn-primary mt-4">
+								Sign In
+							</button>
 						</fieldset>
 					</div>
 
@@ -87,6 +91,24 @@
 					</div>
 				</div>
 			</section>
+
+			<!-- Open the modal using ID.showModal() method -->
+			<dialog id="my_modal_2" class="modal modal-top sm:modal-middle">
+				<div class="modal-box">
+					<h3 class="text-lg font-bold">Login Faild!!</h3>
+					<p class="py-4">
+						Enter <span class="bg-red-200 p-1">admin</span> as a username
+					</p>
+					<p>
+						And password will be
+						<span class="bg-red-200 p-1">admin123</span>
+					</p>
+				</div>
+				<form method="dialog" class="modal-backdrop">
+					<button>close</button>
+				</form>
+			</dialog>
 		</main>
+		<script src="./scripts/login.js"></script>
 	</body>
 </html>
