@@ -3,8 +3,12 @@ const allCardsUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 const openTab = [];
 const closeTab = [];
 
-const cardsContainer = document.getElementById("card_container");
+const allTabBtn = document.getElementById("all_tab_btn");
+const openTabBtn = document.getElementById("open_tab_btn");
+const closeTabBtn = document.getElementById("close_tab_btn");
+
 const issuesCount = document.getElementById("issue_count");
+const cardsContainer = document.getElementById("card_container");
 
 async function loadAllCards() {
 	const response = await fetch(allCardsUrl);
@@ -72,9 +76,7 @@ async function loadAllCards() {
 				</div>
          `;
 			cardsContainer.appendChild(cardDiv);
-		}
-
-		else if (card.status == "closed") {
+		} else if (card.status == "closed") {
 			const cardDiv = document.createElement("div");
 			cardDiv.classList.add(
 				"rounded-lg",
@@ -136,6 +138,22 @@ async function loadAllCards() {
 			cardsContainer.appendChild(cardDiv);
 		}
 	});
+}
+
+function activeButton(id) {
+	allTabBtn.classList.remove("btn-primary");
+	openTabBtn.classList.remove("btn-primary");
+	closeTabBtn.classList.remove("btn-primary");
+
+	document.getElementById(id).classList.add("btn-primary");
+	if (id == "all_tab_btn") {
+		cardsContainer.innerHTML = "";
+		loadAllCards();
+	} else if (id == "open_tab_btn") {
+		cardsContainer.innerHTML = "Open Tab";
+	} else if (id == "close_tab_btn") {
+		cardsContainer.innerHTML = "Close Tab";
+	}
 }
 
 loadAllCards();
