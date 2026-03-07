@@ -33,11 +33,13 @@
 		<title>GitHub Issues Tracker | Home</title>
 	</head>
 	<body>
-		<header class="shadow-xs border-b border-[#F8FAFC]">
-			<section class="flex flex-col w-[90%] space-y-3 md:flex-row md:space-y-0 mx-auto justify-between items-center p-4">
+		<header>
+			<section
+				class="flex flex-col w-[90%] space-y-3 md:flex-row md:space-y-0 mx-auto justify-between items-center p-4"
+			>
 				<div class="flex items-center gap-1">
 					<img src="./assets/github-logo.png" alt="" class="w-10" />
-					<h1 class="text-2xl font-semibold highColor">
+					<h1 class="text-xl md:text-2xl font-semibold highColor">
 						GitHub Issues Tracker
 					</h1>
 				</div>
@@ -52,5 +54,265 @@
 				</div>
 			</section>
 		</header>
+		<main class="bgColor pt-10">
+			<section class="w-[80%] mx-auto">
+				<!-- *Tab Buttons Div -->
+				<div class="flex gap-3 p-4 rounded-lg bg-white">
+					<button class="btn px-8 btn-primary">All</button>
+					<button class="btn px-7">Open</button>
+					<button class="btn px-7">Closed</button>
+				</div>
+
+				<!-- *Issues Section -->
+				<section class="mt-5 rounded-lg">
+					<!-- !Issue Counter -->
+					<div
+						class="flex flex-col space-y-4 md:flex-row md:space-y-0 justify-between p-4 rounded-t-lg bg-white border-b-2 border-[#FBFBFB]"
+					>
+						<!-- *Left Side -->
+						<div class="flex items-center gap-2">
+							<div class="bg-[#ECE4FF] p-3 rounded-full">
+								<img src="./assets/Aperture.png" alt="" />
+							</div>
+							<div>
+								<h2 class="text-xl font-semibold">50 Issues</h2>
+								<p class="normalColor">
+									Track and manage your project issues
+								</p>
+							</div>
+						</div>
+
+						<!-- *Right Side -->
+						<div class="flex items-center gap-10">
+							<div class="flex items-center gap-2">
+								<div class="badge bg-green-500 badge-xs"></div>
+								<p class="font-medium">Open</p>
+							</div>
+
+							<div class="flex items-center gap-2">
+								<div class="badge bg-purple-500 badge-xs"></div>
+								<p class="font-medium">Closed</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- !Cards Container -->
+					<div
+						id="card_container"
+						class="grid grid-cols-1 md:grid-cols-2 p-4 gap-4 lg:grid-cols-4 bg-white rounded-b-lg"
+					>
+						<!-- ?Card1 -->
+						<div
+							class="rounded-lg border-t-3 border-green-500 bg-white shadow-lg"
+						>
+							<!-- *Card Start -->
+							<div class="space-y-4 p-5">
+								<div class="flex justify-between">
+									<div>
+										<img
+											src="./assets/Open-Status.png"
+											alt=""
+											class=""
+										/>
+									</div>
+									<span
+										class="badge bg-red-100 text-red-500 px-5 py-3 font-medium rounded-full uppercase"
+										>High</span
+									>
+								</div>
+
+								<h2 class="font-semibold capitalize">
+									Fix navigation menu on mobile devices
+								</h2>
+								<p class="line-clamp-2">
+									The navigation menu doesn't collapse properly on
+									mobile devices Lorem ipsum dolor sit amet,
+									consectetur adipisicing elit. Architecto beatae
+									temporibus amet voluptatem, deleniti impedit,
+									consequatur eligendi quasi eveniet quae, tempore
+									libero reprehenderit quam at enim magnam perspiciatis
+									repellendus doloribus!
+								</p>
+
+								<div class="flex gap-2">
+									<span
+										class="badge bg-red-100 text-red-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>Bug</span
+									>
+									<span
+										class="badge bg-yellow-100 text-yellow-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>help wanted</span
+									>
+								</div>
+							</div>
+
+							<!-- *Card End -->
+							<div class="border-t-2 p-5 border-[#E4E4E7]">
+								<p class="normalColor"><span>#1 </span>by john_doe</p>
+								<p class="normalColor">1/15/2024</p>
+							</div>
+						</div>
+
+
+						<!-- ?Card2 -->
+						<div
+							class="rounded-lg border-t-3 border-green-500 bg-white shadow-lg"
+						>
+							<!-- *Card Start -->
+							<div class="space-y-4 p-5">
+								<div class="flex justify-between">
+									<div>
+										<img
+											src="./assets/Open-Status.png"
+											alt=""
+											class=""
+										/>
+									</div>
+									<span
+										class="badge bg-yellow-100 text-yellow-500 px-5 py-3 font-medium rounded-full uppercase"
+										>Medium</span
+									>
+								</div>
+
+								<h2 class="font-semibold capitalize">
+									Fix navigation menu on mobile devices
+								</h2>
+								<p class="line-clamp-2">
+									The navigation menu doesn't collapse properly on
+									mobile devices Lorem ipsum dolor sit amet,
+									consectetur adipisicing elit. Architecto beatae
+									temporibus amet voluptatem, deleniti impedit,
+									consequatur eligendi quasi eveniet quae, tempore
+									libero reprehenderit quam at enim magnam perspiciatis
+									repellendus doloribus!
+								</p>
+
+								<div class="flex gap-2">
+									<span
+										class="badge bg-red-100 text-red-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>Bug</span
+									>
+									<span
+										class="badge bg-yellow-100 text-yellow-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>help wanted</span
+									>
+								</div>
+							</div>
+
+							<!-- *Card End -->
+							<div class="border-t-2 p-5 border-[#E4E4E7]">
+								<p class="normalColor"><span>#1 </span>by john_doe</p>
+								<p class="normalColor">1/15/2024</p>
+							</div>
+						</div>
+
+						<!-- ?Card3 -->
+						<div
+							class="rounded-lg border-t-3 border-purple-500 bg-white shadow-lg"
+						>
+							<!-- *Card Start -->
+							<div class="space-y-4 p-5">
+								<div class="flex justify-between">
+									<div>
+										<img
+											src="./assets/Closed- Status .png"
+											alt=""
+											class=""
+										/>
+									</div>
+									<span
+										class="badge bg-slate-100 text-slate-500 px-5 py-3 font-medium rounded-full uppercase"
+										>Medium</span
+									>
+								</div>
+
+								<h2 class="font-semibold capitalize">
+									Fix navigation menu on mobile devices
+								</h2>
+								<p class="line-clamp-2">
+									The navigation menu doesn't collapse properly on
+									mobile devices Lorem ipsum dolor sit amet,
+									consectetur adipisicing elit. Architecto beatae
+									temporibus amet voluptatem, deleniti impedit,
+									consequatur eligendi quasi eveniet quae, tempore
+									libero reprehenderit quam at enim magnam perspiciatis
+									repellendus doloribus!
+								</p>
+
+								<div class="flex gap-2">
+									<span
+										class="badge bg-red-100 text-red-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>Bug</span
+									>
+									<span
+										class="badge bg-yellow-100 text-yellow-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>help wanted</span
+									>
+								</div>
+							</div>
+
+							<!-- *Card End -->
+							<div class="border-t-2 p-5 border-[#E4E4E7]">
+								<p class="normalColor"><span>#1 </span>by john_doe</p>
+								<p class="normalColor">1/15/2024</p>
+							</div>
+						</div>
+
+						<!-- ?Card4 -->
+						<div
+							class="rounded-lg border-t-3 border-purple-500 bg-white shadow-lg"
+						>
+							<!-- *Card Start -->
+							<div class="space-y-4 p-5">
+								<div class="flex justify-between">
+									<div>
+										<img
+											src="./assets/Closed- Status .png"
+											alt=""
+											class=""
+										/>
+									</div>
+									<span
+										class="badge bg-slate-100 text-slate-500 px-5 py-3 font-medium rounded-full uppercase"
+										>Medium</span
+									>
+								</div>
+
+								<h2 class="font-semibold capitalize">
+									Fix navigation menu on mobile devices
+								</h2>
+								<p class="line-clamp-2">
+									The navigation menu doesn't collapse properly on
+									mobile devices Lorem ipsum dolor sit amet,
+									consectetur adipisicing elit. Architecto beatae
+									temporibus amet voluptatem, deleniti impedit,
+									consequatur eligendi quasi eveniet quae, tempore
+									libero reprehenderit quam at enim magnam perspiciatis
+									repellendus doloribus!
+								</p>
+
+								<div class="flex gap-2">
+									<span
+										class="badge bg-red-100 text-red-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										> </span
+									>
+									<span
+										class="badge bg-yellow-100 text-yellow-500 px-5 py-3 font-medium badge-outline rounded-full uppercase"
+										>Enhancement</span
+									>
+								</div>
+							</div>
+
+							<!-- *Card End -->
+							<div class="border-t-2 p-5 border-[#E4E4E7]">
+								<p class="normalColor"><span>#1 </span>by john_doe</p>
+								<p class="normalColor">1/15/2024</p>
+							</div>
+						</div>
+                  
+					</div>
+				</section>
+			</section>
+		</main>
 	</body>
 </html>
