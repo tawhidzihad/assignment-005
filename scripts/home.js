@@ -3,6 +3,7 @@ const allCardsUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 const openTab = [];
 const closeTab = [];
 
+const loadingSpinner = document.getElementById("loading_spinner");
 const allTabBtn = document.getElementById("all_tab_btn");
 const openTabBtn = document.getElementById("open_tab_btn");
 const closeTabBtn = document.getElementById("close_tab_btn");
@@ -11,6 +12,7 @@ const issuesCount = document.getElementById("issue_count");
 const cardsContainer = document.getElementById("card_container");
 
 async function loadAllCards() {
+   loadingSpinner.classList.remove("hidden");
 	const response = await fetch(allCardsUrl);
 	const allCards = await response.json();
 	issuesCount.innerText = allCards.data.length;
@@ -138,6 +140,7 @@ async function loadAllCards() {
 			cardsContainer.appendChild(cardDiv);
 		}
 	});
+   loadingSpinner.classList.add("hidden");
 }
 
 function activeButton(id) {
