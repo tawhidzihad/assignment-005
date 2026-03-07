@@ -1,10 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>GitHub Issues Tracker | Home</title>
-</head>
-<body>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--* Tailwind & daisyUI -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/daisyui@5"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+		<!--* Google Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!--* External CSS -->
+		<link rel="stylesheet" href="./styles/style.css" />
+
+		<!--* Favicon Icon -->
+		<link
+			rel="shortcut icon"
+			href="./assets/github-logo.png"
+			type="image/x-icon"
+		/>
+
+		<!--* Site Title -->
+		<title>GitHub Issues Tracker | Home</title>
+	</head>
+	<body>
+		<header class="shadow-xs border-b border-[#F8FAFC]">
+			<section class="flex flex-col w-[90%] space-y-3 md:flex-row md:space-y-0 mx-auto justify-between items-center p-4">
+				<div class="flex items-center gap-1">
+					<img src="./assets/github-logo.png" alt="" class="w-10" />
+					<h1 class="text-2xl font-semibold highColor">
+						GitHub Issues Tracker
+					</h1>
+				</div>
+
+				<div class="flex gap-2">
+					<input
+						type="text"
+						placeholder="🔍 Search issues..."
+						class="input input-bordered w-full md:w-auto"
+					/>
+					<button class="btn btn-primary">Search</button>
+				</div>
+			</section>
+		</header>
+	</body>
 </html>
