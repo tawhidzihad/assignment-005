@@ -297,7 +297,7 @@ async function openModalAndRender(id) {
 	my_modal_1.showModal();
 }
 
-/* This Event listener catch user search input and give related cards, if no card matched then show error massage, while searching time show spinner */
+/* This Event listener catch user search input and give matched title cards, if no card matched then show error massage, while searching time show spinner */
 document.getElementById("search_btn").addEventListener("click", () => {
 	loadingSpinner.classList.remove("hidden");
 	noSearchResult.classList.add("hidden");
