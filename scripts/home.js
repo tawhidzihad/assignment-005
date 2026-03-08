@@ -8,6 +8,8 @@ const closeTabBtn = document.getElementById("close_tab_btn");
 const issuesCount = document.getElementById("issue_count");
 const cardsContainer = document.getElementById("card_container");
 
+const modalContainer = document.getElementById("modal_container");
+
 async function loadAllCards() {
 	loadingSpinner.classList.remove("hidden");
 	const response = await fetch(allCardsUrl);
@@ -75,7 +77,7 @@ function renderOpenCard(card) {
 	);
 	cardDiv.innerHTML = `
 		<!-- This is card ${card.id} -->
-		<div onclick="openmoadl(${card.id})">
+		<div onclick="openModalAndRender(${card.id})">
 			<!-- Card Start -->
 			<div class="space-y-4 p-5">
 				<div class="flex justify-between">
@@ -139,7 +141,7 @@ function renderCloseCard(card) {
 	);
 	cardDiv.innerHTML = `
 		<!-- This is card ${card.id} -->
-		<div onclick="openmoadl(${card.id})">
+		<div onclick="openModalAndRender(${card.id})">
 			<!-- Card Start -->
 			<div class="space-y-4 p-5">
 				<div class="flex justify-between">
@@ -192,8 +194,86 @@ function renderCloseCard(card) {
 	cardsContainer.appendChild(cardDiv);
 }
 
-function openmoadl(id) {
-	console.log(id);
+async function openModalAndRender(id) {
+	const response = await fetch(
+		`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+	);
+	const card = await response.json();
+	const cardData = card.data;
+
+	const contentDiv = document.createElement("div");
+	contentDiv.classList.add("space-y-7");
+	contentDiv.innerHTML = `
+		<!-- *Title -->
+		<h1 class="text-2xl font-bold capitalize">
+			${cardData.title}
+		</h1>
+
+		<!-- *Status, who assignee, created time-->
+		<div class="flex gap-1.5 items-center">
+
+			<span
+				class="${cardData.status == "closed" ? "badge bg-purple-600 text-white rounded-full badge-lg capitalize text-xs" : cardData.status === "open" ? "badge bg-green-600 text-white rounded-full badge-lg capitalize text-xs" : ""}"
+				>${cardData.status}</span
+			>
+
+			<span
+				class="w-1.5 h-1.5 rounded-full bg-[#64748B]"
+			></span>
+
+			<span class="text-xs normalColor"
+				>Opened by ${cardData.author}</span
+			>
+
+			<span
+				class="w-1.5 h-1.5 rounded-full bg-[#64748B]"
+			></span>
+
+			<span class="text-xs normalColor">${new Date(cardData.createdAt).toLocaleString(
+				"en-US",
+				{ month: "numeric", day: "numeric", year: "numeric" },
+			)}</span>
+		</div>
+
+		<!--* Lebels -->
+		<div class="flex gap-3">
+			${cardData.labels.map((lebel) => `<span class="badge bg-slate-100 text-yellow-500 font-medium rounded-full uppercase line-clamp-1">${lebel}</span>`).join("")}
+		</div>
+
+		<!-- *Description -->
+		<div>
+			<p>${cardData.description}</p>
+		</div>
+
+		<!-- *Assign & Priority -->
+		<div class="bgColor rounded-lg p-5 grid grid-cols-2">
+
+			<!-- *Left Side -->
+			<div>
+				<span class="normalColor">Assignee:</span>
+				<p class="font-semibold capitalize">${cardData.assignee}</p>
+			</div>
+
+			<!-- *Right Side -->
+			<div>
+				<p class="normalColor">Priority:</p>
+				<p class="${cardData.priority === "high" ? "badge badge-lg bg-red-500 text-white uppercase" : cardData.priority === "medium" ? "badge badge-lg bg-yellow-500 text-white uppercase" : "badge badge-lg bg-slate-500 text-white uppercase"}"
+				>${cardData.priority}</p>
+			</div>
+		</div>
+
+		<!-- Modal Close Button -->
+		<div class="modal-action">
+			<form method="dialog">
+				<!-- if there is a button in form, it will close the modal -->
+					<button class="btn btn-primary">Close</button>
+			</form>
+		</div>
+	`;
+
+	modalContainer.innerHTML = "";
+	modalContainer.appendChild(contentDiv);
+	my_modal_1.showModal();
 }
 
 loadAllCards();

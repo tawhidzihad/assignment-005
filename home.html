@@ -58,11 +58,27 @@
 			<section class="w-[80%] mx-auto">
 				<!-- *Tab Buttons Div -->
 				<div class="flex gap-3 p-4 rounded-lg bg-white">
-					<button onclick="activeButton('all_tab_btn')" id="all_tab_btn" class="btn md:px-8 btn-primary">
+					<button
+						onclick="activeButton('all_tab_btn')"
+						id="all_tab_btn"
+						class="btn md:px-8 btn-primary"
+					>
 						All
 					</button>
-					<button onclick="activeButton('open_tab_btn')" id="open_tab_btn" class="btn md:px-7">Open</button>
-					<button onclick="activeButton('close_tab_btn')" id="close_tab_btn" class="btn md:px-7">Closed</button>
+					<button
+						onclick="activeButton('open_tab_btn')"
+						id="open_tab_btn"
+						class="btn md:px-7"
+					>
+						Open
+					</button>
+					<button
+						onclick="activeButton('close_tab_btn')"
+						id="close_tab_btn"
+						class="btn md:px-7"
+					>
+						Closed
+					</button>
 				</div>
 
 				<!-- *Issues & Cards Section -->
@@ -113,6 +129,11 @@
 						class="grid grid-cols-1 md:grid-cols-2 p-4 gap-4 lg:grid-cols-4 bg-white rounded-b-lg"
 					></div>
 
+					<!-- Open the modal using ID.showModal() method -->
+					<dialog id="my_modal_1" class="modal">
+						<div id="modal_container" class="modal-box max-w-2xl p-10">
+						</div>
+					</dialog>
 				</section>
 			</section>
 		</main>
