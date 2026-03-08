@@ -1,15 +1,26 @@
+// API URL
 const allCardsUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
+// Loading Spinner Container
 const loadingSpinner = document.getElementById("loading_spinner");
+
+// No Search Result Found Container
+const noSearchResult = document.getElementById("no_search_result");
+
+// 3 Tab Buttons
 const allTabBtn = document.getElementById("all_tab_btn");
 const openTabBtn = document.getElementById("open_tab_btn");
 const closeTabBtn = document.getElementById("close_tab_btn");
 
+// Issue Count Container
 const issuesCount = document.getElementById("issue_count");
+// Cards Container
 const cardsContainer = document.getElementById("card_container");
 
+// Modal Container
 const modalContainer = document.getElementById("modal_container");
 
+/* This async function fetch data through API and run condition to collect open or closed status cards and send the cards by calling open or close render function*/
 async function loadAllCards() {
 	loadingSpinner.classList.remove("hidden");
 	const response = await fetch(allCardsUrl);
@@ -26,6 +37,7 @@ async function loadAllCards() {
 	loadingSpinner.classList.add("hidden");
 }
 
+/* This function catch 3 button and by default remove btn-primary class and, when function call they recive parameter and add btn-primary class, also clear previous conatiner html */
 function activeButton(id) {
 	allTabBtn.classList.remove("btn-primary");
 	openTabBtn.classList.remove("btn-primary");
@@ -35,16 +47,21 @@ function activeButton(id) {
 	if (id == "all_tab_btn") {
 		cardsContainer.innerHTML = "";
 		loadAllCards();
+		noSearchResult.classList.add("hidden");
 	} else if (id == "open_tab_btn") {
 		cardsContainer.innerHTML = "";
 		filterTabsCards(id);
+		noSearchResult.classList.add("hidden");
 	} else if (id == "close_tab_btn") {
 		cardsContainer.innerHTML = "";
 		filterTabsCards(id);
+		noSearchResult.classList.add("hidden");
 	}
 }
 
+/* This async function fetch cards from API and Filter cards based Open & Closed status, send the cards by calling open or close render function */
 async function filterTabsCards(id) {
+	loadingSpinner.classList.remove("hidden");
 	const response = await fetch(allCardsUrl);
 	const cards = await response.json();
 
@@ -64,8 +81,10 @@ async function filterTabsCards(id) {
 			renderCloseCard(card);
 		}
 	});
+	loadingSpinner.classList.add("hidden");
 }
 
+/* This function render open status card, when call this function they recive loop cards (parameter/arguments) and render in cardsContainer on open status based style */
 function renderOpenCard(card) {
 	const cardDiv = document.createElement("div");
 	cardDiv.classList.add(
@@ -130,6 +149,7 @@ function renderOpenCard(card) {
 	cardsContainer.appendChild(cardDiv);
 }
 
+/* This function render close status card, when call this function they recive loop cards parameter/arguments and render in cardsContainer on close status based style */
 function renderCloseCard(card) {
 	const cardDiv = document.createElement("div");
 	cardDiv.classList.add(
@@ -194,6 +214,7 @@ function renderCloseCard(card) {
 	cardsContainer.appendChild(cardDiv);
 }
 
+/* This async function catch id and fetch mathed id card from API and call modal function and render in modal, also modal shows dynamic data with diffrent colour or style except lebels*/
 async function openModalAndRender(id) {
 	const response = await fetch(
 		`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
@@ -257,7 +278,7 @@ async function openModalAndRender(id) {
 			<!-- *Right Side -->
 			<div>
 				<p class="normalColor">Priority:</p>
-				<p class="${cardData.priority === "high" ? "badge badge-lg bg-red-500 text-white uppercase" : cardData.priority === "medium" ? "badge badge-lg bg-yellow-500 text-white uppercase" : "badge badge-lg bg-slate-500 text-white uppercase"}"
+				<p class="${cardData.priority === "high" ? "badge badge-lg bg-red-500 text-white uppercase rounded-full" : cardData.priority === "medium" ? "badge badge-lg bg-yellow-500 text-white uppercase rounded-full" : "badge badge-lg bg-slate-500 text-white uppercase rounded-full"}"
 				>${cardData.priority}</p>
 			</div>
 		</div>
@@ -275,5 +296,49 @@ async function openModalAndRender(id) {
 	modalContainer.appendChild(contentDiv);
 	my_modal_1.showModal();
 }
+
+/* This Event listener catch user search input and give related cards, if no card matched then show error massage, while searching time show spinner */
+document.getElementById("search_btn").addEventListener("click", () => {
+	loadingSpinner.classList.remove("hidden");
+	noSearchResult.classList.add("hidden");
+
+	const searchInput = document.getElementById("search_input");
+	const searchValue = searchInput.value.toLowerCase();
+
+	if (searchValue.length > 0) {
+		cardsContainer.innerHTML = "";
+	} else {
+		loadingSpinner.classList.add("hidden");
+		return;
+	}
+
+	fetch(
+		`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+	)
+		.then((res) => res.json())
+		.then((cards) => {
+			const searchFilterCards = cards.data.filter((card) =>
+				card.title.toLowerCase().includes(searchValue),
+			);
+
+			issuesCount.innerText = searchFilterCards.length;
+
+			if (searchFilterCards.length === 0) {
+				cardsContainer.innerHTML = "";
+				noSearchResult.classList.remove("hidden");
+				loadingSpinner.classList.add("hidden");
+				return;
+			}
+
+			searchFilterCards.forEach((card) => {
+				if (card.status === "open") {
+					renderOpenCard(card);
+				} else if (card.status === "closed") {
+					renderCloseCard(card);
+				}
+			});
+			loadingSpinner.classList.add("hidden");
+		});
+});
 
 loadAllCards();
